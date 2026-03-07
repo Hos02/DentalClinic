@@ -27,15 +27,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1E1411]">
+    <div className="min-h-screen bg-slate-100">
       {/* Hero Header */}
-      <div className="bg-[#1E1411] text-[#F2EDE8] py-16">
+      <div className="bg-slate-100 text-[#F2EDE8] py-16">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl font-playfair font-bold mb-4 text-[#F2EDE8]">
+            <h1 className="text-4xl sm:text-5xl font-playfair font-bold mb-4 text-[#D7B46A]">
               Contact Us
             </h1>
-            <p className="text-lg text-[#F2EDE8]/80 mb-6">
+            <p className="text-lg text-[#D7B46A] mb-6">
               We're here to help you plan your perfect Armenian wine tour experience
             </p>
             <div className="flex justify-center">

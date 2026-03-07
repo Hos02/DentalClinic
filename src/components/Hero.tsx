@@ -44,7 +44,7 @@ export function Hero() {
                 size="lg"
                 className="text-base sm:text-lg px-8 py-6 border-2"
               >
-                <Link href="/services">View Services</Link>
+                <Link href="/doctors">View Doctors</Link>
               </Button>
             </div>
           </div>
