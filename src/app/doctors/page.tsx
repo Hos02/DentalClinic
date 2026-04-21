@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 const doctors = [
   {
@@ -30,18 +31,20 @@ const doctors = [
 ];
 
 export default function DoctorsPage() {
+  const { t } = useTranslation();
+
   return (
-    <div className="bg-gradient-to-b from-white via-blue-50/40 to-white">
+    <div className="bg-gradient-to-b from-white via-emerald-50/40 to-white">
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="text-center mb-12 lg:mb-16">
-          <p className="text-sm uppercase tracking-[0.3em] text-blue-600 font-semibold">
-            Our Team
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">
+            {t.footer.ourTeam}
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mt-3">
-            Meet Our Doctors
+            {t.nav.doctors}
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-            Compassionate specialists dedicated to brighter, healthier smiles for every patient.
+            {t.doctors.sectionSubtitle}
           </p>
         </div>
 
@@ -64,7 +67,7 @@ export default function DoctorsPage() {
               <div className="p-6 space-y-3">
                 <div>
                   <h2 className="text-xl font-bold text-gray-900">{doctor.name}</h2>
-                  <p className="text-blue-600 font-medium">{doctor.specialty}</p>
+                  <p className="font-medium text-emerald-700">{doctor.specialty}</p>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">{doctor.bio}</p>
               </div>

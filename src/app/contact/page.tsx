@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 export default function ContactPage() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,7 +16,7 @@ export default function ContactPage() {
     e.preventDefault();
     // Handle form submission here
     console.log("Form submitted:", formData);
-    alert("Your message has been sent! We will get back to you within 24 hours.");
+    alert(t.contact.sentAlert);
   };
 
   const handleChange = (
@@ -27,40 +29,40 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gradient-to-b from-white via-emerald-50/40 to-white">
       {/* Hero Header */}
-      <div className="bg-slate-100 text-[#F2EDE8] py-16">
+      <div className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl font-playfair font-bold mb-4 text-[#D7B46A]">
-              Contact Us
+            <h1 className="mb-4 text-3xl font-playfair font-bold text-emerald-700 sm:text-5xl">
+              {t.contact.title}
             </h1>
-            <p className="text-lg text-[#D7B46A] mb-6">
-              We're here to help you plan your perfect Armenian wine tour experience
+            <p className="mb-6 text-base text-emerald-800/80 sm:text-lg">
+              {t.contact.subtitle}
             </p>
             <div className="flex justify-center">
-              <div className="w-24 h-1 bg-[#D7B46A] rounded-full"></div>
+              <div className="h-1 w-24 rounded-full bg-emerald-600"></div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-12">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
           {/* LEFT COLUMN */}
           <div className="space-y-6">
             {/* Contact Information Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-playfair font-semibold text-gray-900 mb-6">
-                Contact Information
+            <div className="rounded-2xl border border-emerald-100/70 bg-white p-5 shadow-lg shadow-emerald-100/60 sm:p-8">
+              <h2 className="mb-6 text-xl font-playfair font-semibold text-gray-900 sm:text-2xl">
+                {t.contact.contactInfo}
               </h2>
               <div className="space-y-6">
                 {/* Phone */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#D7B46A]/10 flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-100">
                     <svg
-                      className="w-6 h-6 text-[#D7B46A]"
+                      className="h-6 w-6 text-emerald-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -76,19 +78,19 @@ export default function ContactPage() {
                   <div>
                     <a
                       href="tel:+37477454979"
-                      className="text-lg font-semibold text-gray-900 hover:text-[#D7B46A] transition-colors block"
+                      className="block text-lg font-semibold text-gray-900 transition-colors hover:text-emerald-700"
                     >
                       +374 77 454 979
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Available 24/7</p>
+                    <p className="text-sm text-gray-500 mt-1">{t.contact.available247}</p>
                   </div>
                 </div>
 
                 {/* Email */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#D7B46A]/10 flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-100">
                     <svg
-                      className="w-6 h-6 text-[#D7B46A]"
+                      className="h-6 w-6 text-emerald-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -104,19 +106,19 @@ export default function ContactPage() {
                   <div>
                     <a
                       href="mailto:infojermtravel@gmail.com"
-                      className="text-lg font-semibold text-gray-900 hover:text-[#D7B46A] transition-colors block"
+                      className="block break-all text-base font-semibold text-gray-900 transition-colors hover:text-emerald-700 sm:text-lg sm:break-normal"
                     >
                       infojermtravel@gmail.com
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Email us anytime</p>
+                    <p className="text-sm text-gray-500 mt-1">{t.contact.emailAnytime}</p>
                   </div>
                 </div>
 
                 {/* Address */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#D7B46A]/10 flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-100">
                     <svg
-                      className="w-6 h-6 text-[#D7B46A]"
+                      className="h-6 w-6 text-emerald-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -139,16 +141,16 @@ export default function ContactPage() {
                     <p className="text-lg font-semibold text-gray-900">
                       15 Abovyan Street, Yerevan, Armenia
                     </p>
-                    <p className="text-sm text-gray-500 mt-1">Visit our office</p>
+                    <p className="text-sm text-gray-500 mt-1">{t.contact.visitOffice}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Quick Contact Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-playfair font-semibold text-gray-900 mb-6">
-                Quick Contact
+            <div className="rounded-2xl border border-emerald-100/70 bg-white p-5 shadow-lg shadow-emerald-100/60 sm:p-8">
+              <h2 className="mb-6 text-xl font-playfair font-semibold text-gray-900 sm:text-2xl">
+                {t.contact.quickContact}
               </h2>
               <div className="space-y-4">
                 {/* WhatsApp Button */}
@@ -156,7 +158,7 @@ export default function ContactPage() {
                   href="https://wa.me/37477454979"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold py-4 px-6 rounded-xl transition-colors shadow-md hover:shadow-lg"
+                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-600 px-6 py-4 font-semibold text-white shadow-md transition-all hover:bg-emerald-700 hover:shadow-lg"
                 >
                   <svg
                     className="w-6 h-6"
@@ -173,7 +175,7 @@ export default function ContactPage() {
                   href="https://t.me/armeniawinetours"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-3 bg-[#0088cc] hover:bg-[#0077b5] text-white font-semibold py-4 px-6 rounded-xl transition-colors shadow-md hover:shadow-lg"
+                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-sky-500 px-6 py-4 font-semibold text-white shadow-md transition-all hover:bg-sky-600 hover:shadow-lg"
                 >
                   <svg
                     className="w-6 h-6"
@@ -190,12 +192,12 @@ export default function ContactPage() {
 
           {/* RIGHT COLUMN - Contact Form */}
           <div>
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-playfair font-semibold text-gray-900 mb-2">
-                Send Us a Message
+            <div className="rounded-2xl border border-emerald-100/70 bg-white p-5 shadow-lg shadow-emerald-100/60 sm:p-8">
+              <h2 className="mb-2 text-xl font-playfair font-semibold text-gray-900 sm:text-2xl">
+                {t.contact.sendMessage}
               </h2>
               <p className="text-gray-600 mb-6">
-                We will get back to you within 24 hours
+                {t.contact.backIn24}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -205,7 +207,7 @@ export default function ContactPage() {
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Name
+                    {t.contact.name}
                   </label>
                   <input
                     type="text"
@@ -214,8 +216,8 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D7B46A] focus:border-[#D7B46A] outline-none transition-colors"
-                    placeholder="Your name"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                    placeholder={t.contact.namePlaceholder}
                   />
                 </div>
 
@@ -225,7 +227,7 @@ export default function ContactPage() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Email
+                    {t.appointment.email}
                   </label>
                   <input
                     type="email"
@@ -234,7 +236,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D7B46A] focus:border-[#D7B46A] outline-none transition-colors"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -245,10 +247,10 @@ export default function ContactPage() {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Phone Number
+                    {t.contact.phoneNumber}
                   </label>
-                  <div className="flex gap-2">
-                    <div className="flex items-center gap-2 px-3 border border-gray-300 rounded-lg bg-gray-50">
+                  <div className="flex flex-col gap-2 sm:flex-row">
+                    <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-3 sm:py-0">
                       <span className="text-2xl">🇦🇲</span>
                       <span className="text-sm text-gray-600">+374</span>
                     </div>
@@ -259,7 +261,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D7B46A] focus:border-[#D7B46A] outline-none transition-colors"
+                      className="flex-1 rounded-lg border border-gray-300 px-4 py-3 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
                       placeholder="77 45 49 79"
                     />
                   </div>
@@ -271,7 +273,7 @@ export default function ContactPage() {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Your Message
+                    {t.contact.yourMessage}
                   </label>
                   <textarea
                     id="message"
@@ -280,17 +282,17 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D7B46A] focus:border-[#D7B46A] outline-none transition-colors resize-none"
-                    placeholder="Your message or question..."
+                    className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                    placeholder={t.contact.messagePlaceholder}
                   />
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#D7B46A] hover:bg-[#C7A158] text-[#1E1411] font-semibold py-4 px-6 rounded-xl transition-colors shadow-md hover:shadow-lg"
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-4 font-semibold text-white shadow-md transition-colors hover:bg-emerald-700 hover:shadow-lg"
                 >
-                  Send
+                  {t.contact.send}
                 </button>
               </form>
             </div>

@@ -1,55 +1,60 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gray-50 text-gray-900 border-t border-gray-200">
       {/* Main Footer Content */}
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Section */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-600 mb-4">
-              Company
+          <div className="space-y-4 break-words">
+            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+              {t.footer.company}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/about"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="break-all text-sm text-gray-600 transition-colors hover:text-emerald-600 sm:break-normal"
                 >
-                  About Us
+                  {t.footer.aboutUs}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/team"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
-                  Our Team
+                  {t.footer.ourTeam}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/careers"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
-                  Careers
+                  {t.footer.careers}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/blog"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
-                  Blog
+                  {t.footer.blog}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/terms"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
-                  Terms & Privacy
+                  {t.footer.terms}
                 </Link>
               </li>
             </ul>
@@ -57,13 +62,13 @@ export default function Footer() {
 
           {/* Contact Us Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-600 mb-4">
-              Contact Us
+            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+              {t.footer.contactUs}
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -77,14 +82,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="tel:+37477454979"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
                   +374 77 454 979
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -108,7 +113,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -122,14 +127,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:info@dentalcare.com"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
                   info@dentalcare.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -142,7 +147,7 @@ export default function Footer() {
                   />
                 </svg>
                 <span className="text-gray-600 text-sm">
-                  Mon - Sat: 9:00 AM - 6:00 PM
+                  {t.footer.workHours}
                 </span>
               </li>
             </ul>
@@ -150,21 +155,21 @@ export default function Footer() {
 
           {/* Follow Us Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-600 mb-4">
-              Follow Us
+            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+              {t.footer.followUs}
             </h3>
             <div className="space-y-4">
               {/* Social Media Icons */}
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:bg-blue-50 hover:border-blue-300 flex items-center justify-center transition-colors group shadow-sm"
+                  className="group flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50"
                   aria-label="Instagram"
                 >
                   <svg
-                    className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors"
+                    className="h-5 w-5 text-gray-600 transition-colors group-hover:text-emerald-600"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -175,11 +180,11 @@ export default function Footer() {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:bg-blue-50 hover:border-blue-300 flex items-center justify-center transition-colors group shadow-sm"
+                  className="group flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50"
                   aria-label="Facebook"
                 >
                   <svg
-                    className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors"
+                    className="h-5 w-5 text-gray-600 transition-colors group-hover:text-emerald-600"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -190,11 +195,11 @@ export default function Footer() {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:bg-blue-50 hover:border-blue-300 flex items-center justify-center transition-colors group shadow-sm"
+                  className="group flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50"
                   aria-label="YouTube"
                 >
                   <svg
-                    className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors"
+                    className="h-5 w-5 text-gray-600 transition-colors group-hover:text-emerald-600"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -205,17 +210,17 @@ export default function Footer() {
 
               {/* Message Us Section */}
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-3">Message Us</p>
-                <div className="flex gap-3">
+                <p className="text-sm font-medium text-gray-700 mb-3">{t.footer.messageUs}</p>
+                <div className="flex flex-wrap gap-3">
                   <a
                     href="https://wa.me/37477454979"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:bg-blue-50 hover:border-blue-300 flex items-center justify-center transition-colors group shadow-sm"
+                    className="group flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50"
                     aria-label="WhatsApp"
                   >
                     <svg
-                      className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors"
+                      className="h-5 w-5 text-gray-600 transition-colors group-hover:text-emerald-600"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -224,11 +229,11 @@ export default function Footer() {
                   </a>
                   <a
                     href="viber://chat?number=37477454979"
-                    className="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:bg-blue-50 hover:border-blue-300 flex items-center justify-center transition-colors group shadow-sm"
+                    className="group flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50"
                     aria-label="Viber"
                   >
                     <svg
-                      className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors"
+                      className="h-5 w-5 text-gray-600 transition-colors group-hover:text-emerald-600"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -239,11 +244,11 @@ export default function Footer() {
                     href="https://t.me/dentalcare"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:bg-blue-50 hover:border-blue-300 flex items-center justify-center transition-colors group shadow-sm"
+                    className="group flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50"
                     aria-label="Telegram"
                   >
                     <svg
-                      className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors"
+                      className="h-5 w-5 text-gray-600 transition-colors group-hover:text-emerald-600"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -257,13 +262,13 @@ export default function Footer() {
 
           {/* Why Choose Us Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-blue-600 mb-4">
-              Why Choose Us?
+            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+              {t.footer.whyChooseUs}
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -275,11 +280,11 @@ export default function Footer() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="text-gray-600 text-sm">Experienced dentists</span>
+                <span className="text-gray-600 text-sm">{t.footer.experiencedDentists}</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -291,11 +296,11 @@ export default function Footer() {
                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                   />
                 </svg>
-                <span className="text-gray-600 text-sm">Modern facilities</span>
+                <span className="text-gray-600 text-sm">{t.footer.modernFacilities}</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -307,11 +312,11 @@ export default function Footer() {
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
-                <span className="text-gray-600 text-sm">Fast customer support</span>
+                <span className="text-gray-600 text-sm">{t.footer.fastSupport}</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -323,7 +328,7 @@ export default function Footer() {
                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                   />
                 </svg>
-                <span className="text-gray-600 text-sm">Secure online booking</span>
+                <span className="text-gray-600 text-sm">{t.footer.secureBooking}</span>
               </li>
             </ul>
           </div>
@@ -333,16 +338,16 @@ export default function Footer() {
       {/* Bottom Section with Copyright and Decorative Line */}
       <div className="border-t border-gray-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-6 md:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-gray-500 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} DentalCare. All rights reserved.
+              © {new Date().getFullYear()} DentalCare. {t.footer.rightsReserved}
             </p>
-            <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-2 sm:flex">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <div
                     key={i}
-                    className="w-1.5 h-1.5 rounded-full bg-blue-600 opacity-60"
+                    className="h-1.5 w-1.5 rounded-full bg-emerald-600 opacity-60"
                     style={{
                       animationDelay: `${i * 0.1}s`,
                     }}
@@ -350,7 +355,7 @@ export default function Footer() {
                 ))}
               </div>
               <svg
-                className="w-16 h-0.5 text-blue-600 opacity-40"
+                className="h-0.5 w-16 text-emerald-600 opacity-40"
                 viewBox="0 0 64 1"
                 fill="none"
               >

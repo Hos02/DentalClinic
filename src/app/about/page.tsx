@@ -4,6 +4,7 @@ import Image from "next/image";
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 const gallery = [
   { src: "/images/dental1.jpg", alt: "Clinic interior 1" },
@@ -12,6 +13,7 @@ const gallery = [
 
 export default function AboutPage() {
   const [index, setIndex] = React.useState(0);
+  const { t } = useTranslation();
 
   const prev = () =>
     setIndex((current) => (current === 0 ? gallery.length - 1 : current - 1));
@@ -19,39 +21,33 @@ export default function AboutPage() {
     setIndex((current) => (current === gallery.length - 1 ? 0 : current + 1));
 
   return (
-    <div className="bg-gradient-to-b from-white via-blue-50/40 to-white">
+    <div className="bg-gradient-to-b from-white via-emerald-50/40 to-white">
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left: History & Map */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-[0.25em] text-blue-600 font-semibold">
-                Our Story
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-700">
+                {t.about.ourStory}
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                A trusted dental clinic with deep roots in Kasagh
+                {t.about.heading}
               </h1>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Founded to bring compassionate, modern dentistry to our community, our
-                clinic blends evidence-based care with a personal touch. From preventive
-                checkups to advanced restorative treatments, we design every visit to be
-                comfortable, transparent, and tailored to you.
+                {t.about.paragraph1}
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Our team of specialists is united by one goal: healthy, confident smiles
-                for every patient in Kasagh and beyond. We invest in the latest
-                technology, continuous education, and a welcoming environment so you feel
-                supported at every step.
+                {t.about.paragraph2}
               </p>
             </div>
 
             <div className="rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden">
               <div className="p-4 border-b border-gray-100">
                 <h2 className="text-xl font-semibold text-gray-900">
-                  Visit us in Kasagh
+                  {t.about.visitKasagh}
                 </h2>
                 <p className="text-sm text-gray-600">
-                  Village of Kasagh, Aragatsotn Region, Armenia
+                  {t.about.location}
                 </p>
               </div>
               <div className="aspect-[4/3] w-full">
@@ -83,7 +79,7 @@ export default function AboutPage() {
                 <div className="absolute inset-x-4 bottom-4 flex items-center justify-between">
                   <button
                     onClick={prev}
-                    aria-label="Previous image"
+                    aria-label={t.about.previousImage}
                     className="p-2 rounded-full bg-white/80 backdrop-blur shadow hover:bg-white transition-colors"
                   >
                     <ChevronLeft className="w-5 h-5 text-gray-700" />
@@ -95,7 +91,7 @@ export default function AboutPage() {
                         className={cn(
                           "h-2 w-2 rounded-full transition-all",
                           i === index
-                            ? "bg-blue-600 w-5"
+                            ? "bg-emerald-600 w-5"
                             : "bg-white/70 border border-gray-200"
                         )}
                       />
@@ -103,7 +99,7 @@ export default function AboutPage() {
                   </div>
                   <button
                     onClick={next}
-                    aria-label="Next image"
+                    aria-label={t.about.nextImage}
                     className="p-2 rounded-full bg-white/80 backdrop-blur shadow hover:bg-white transition-colors"
                   >
                     <ChevronRight className="w-5 h-5 text-gray-700" />

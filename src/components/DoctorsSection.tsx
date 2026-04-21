@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Star, X, Clock, Calendar } from "lucide-react";
+import { Star, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 interface TimeSlot {
   time: string;
@@ -248,13 +249,15 @@ interface DoctorCardProps {
 }
 
 function DoctorCard({ doctor, isSelected, onClick }: DoctorCardProps) {
+  const { t } = useTranslation();
+
   return (
     <div
       className={cn(
         "bg-white rounded-xl shadow-lg border-2 transition-all duration-300 cursor-pointer overflow-hidden",
         isSelected
-          ? "border-blue-600 shadow-xl scale-[1.02]"
-          : "border-gray-200 hover:border-blue-300 hover:shadow-xl"
+          ? "border-emerald-600 shadow-xl scale-[1.02]"
+          : "border-gray-200 hover:border-emerald-300 hover:shadow-xl"
       )}
       onClick={onClick}
     >
@@ -267,9 +270,9 @@ function DoctorCard({ doctor, isSelected, onClick }: DoctorCardProps) {
           priority={doctor.id <= 3}
         />
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{doctor.name}</h3>
-        <p className="text-blue-600 font-medium mb-4">{doctor.specialty}</p>
+      <div className="p-5 sm:p-6">
+        <h3 className="mb-2 text-lg font-bold text-gray-900 sm:text-xl">{doctor.name}</h3>
+        <p className="mb-4 font-medium text-emerald-700">{doctor.specialty}</p>
         <div className="flex items-center gap-2">
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
@@ -287,7 +290,9 @@ function DoctorCard({ doctor, isSelected, onClick }: DoctorCardProps) {
           <span className="text-sm font-semibold text-gray-700">
             {doctor.rating}
           </span>
-          <span className="text-sm text-gray-500">({doctor.reviews} reviews)</span>
+          <span className="text-sm text-gray-500">
+            ({doctor.reviews} {t.doctors.reviews})
+          </span>
         </div>
       </div>
     </div>
@@ -315,10 +320,12 @@ function DoctorDetailsPanel({
   onSlotSelect,
   onBookAppointment,
 }: DoctorDetailsPanelProps) {
+  const { t } = useTranslation();
+
   if (!doctor) return null;
 
   return (
-    <div className="w-full bg-gradient-to-br from-blue-50 to-white border-t-4 border-blue-600 shadow-2xl">
+    <div className="w-full border-t-4 border-emerald-600 bg-gradient-to-br from-emerald-50 to-white shadow-2xl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
@@ -334,7 +341,7 @@ function DoctorDetailsPanel({
             </div>
             <div className="min-w-0">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">{doctor.name}</h3>
-              <p className="text-blue-600 font-medium text-sm sm:text-base">{doctor.specialty}</p>
+              <p className="text-sm font-medium text-emerald-700 sm:text-base">{doctor.specialty}</p>
               <div className="flex items-center gap-2 mt-1 flex-wrap">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
@@ -361,7 +368,7 @@ function DoctorDetailsPanel({
           <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-gray-200 transition-colors flex-shrink-0 self-end sm:self-auto"
-            aria-label="Close"
+            aria-label={t.doctors.close}
           >
             <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
           </button>
@@ -370,12 +377,12 @@ function DoctorDetailsPanel({
         {/* Schedule */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-4">
-            <Calendar className="w-5 h-5 text-blue-600" />
+            <Calendar className="h-5 w-5 text-emerald-600" />
             <h4 className="text-lg font-semibold text-gray-900">
-              Available Schedule
+              {t.doctors.availableSchedule}
             </h4>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
             {doctor.schedule.map((daySchedule, idx) => (
               <div
                 key={idx}
@@ -385,7 +392,7 @@ function DoctorDetailsPanel({
                   <p className="font-semibold text-gray-900">{daySchedule.day}</p>
                   <p className="text-sm text-gray-500">{daySchedule.date}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-2">
                   {daySchedule.slots.map((slot, slotIdx) => (
                     <button
                       key={slotIdx}
@@ -407,8 +414,8 @@ function DoctorDetailsPanel({
                           ? selectedSlot?.doctorId === doctor.id &&
                               selectedSlot?.day === daySchedule.day &&
                               selectedSlot?.time === slot.time
-                            ? "bg-blue-600 text-white"
-                            : "bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200"
+                            ? "bg-emerald-600 text-white"
+                            : "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                           : "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200"
                       )}
                     >
@@ -423,16 +430,16 @@ function DoctorDetailsPanel({
 
         {/* Booking Section */}
         {selectedSlot?.doctorId === doctor.id && (
-          <div className="bg-white rounded-lg p-6 border-2 border-blue-200 shadow-lg">
+          <div className="rounded-lg border-2 border-emerald-200 bg-white p-6 shadow-lg">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div>
-                <p className="text-sm text-gray-700 mb-1">Selected appointment:</p>
+                <p className="text-sm text-gray-700 mb-1">{t.doctors.selectedAppointment}</p>
                 <p className="font-semibold text-gray-900 text-lg">
                   {selectedSlot.day}, {selectedSlot.date} at {selectedSlot.time}
                 </p>
               </div>
               <Button onClick={onBookAppointment} size="lg" className="w-full md:w-auto">
-                Book Appointment
+                {t.nav.bookAppointment}
               </Button>
             </div>
           </div>
@@ -444,6 +451,8 @@ function DoctorDetailsPanel({
 
 // Main Doctors Section Component
 export function DoctorsSection() {
+  const { t } = useTranslation();
+
   const [selectedDoctor, setSelectedDoctor] = React.useState<Doctor | null>(null);
   const [selectedSlot, setSelectedSlot] = React.useState<{
     doctorId: number;
@@ -474,7 +483,11 @@ export function DoctorsSection() {
   const handleBookAppointment = () => {
     if (selectedSlot && selectedDoctor) {
       alert(
-        `Appointment booked with ${selectedDoctor.name} on ${selectedSlot.day}, ${selectedSlot.date} at ${selectedSlot.time}`
+        t.doctors.bookSuccess
+          .replace("{doctor}", selectedDoctor.name)
+          .replace("{day}", selectedSlot.day)
+          .replace("{date}", selectedSlot.date)
+          .replace("{time}", selectedSlot.time)
       );
       setSelectedSlot(null);
       setSelectedDoctor(null);
@@ -492,10 +505,10 @@ export function DoctorsSection() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Our Expert Doctors
+            {t.doctors.sectionTitle}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Meet our experienced dental professionals dedicated to your oral health
+            {t.doctors.sectionSubtitle}
           </p>
         </div>
 
