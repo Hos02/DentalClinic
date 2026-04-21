@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Language, translations } from "./translations";
 
-type TranslationTree = (typeof translations)["en"];
+type TranslationTree = (typeof translations)[Language];
 
 type LanguageContextValue = {
   language: Language;

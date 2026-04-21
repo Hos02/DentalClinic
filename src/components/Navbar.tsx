@@ -28,7 +28,7 @@ const languageNames: Record<Language, string> = {
   hy: "Armenian",
 };
 
-export function Navbar() {
+function NavbarContent() {
   const [open, setOpen] = React.useState(false);
   const { language, setLanguage, t } = useTranslation();
   const router = useRouter();
@@ -156,6 +156,14 @@ export function Navbar() {
         </div>
       </div>
     </nav>
+  );
+}
+
+export function Navbar() {
+  return (
+    <React.Suspense fallback={null}>
+      <NavbarContent />
+    </React.Suspense>
   );
 }
 

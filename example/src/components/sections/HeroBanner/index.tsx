@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export function HeroBanner() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
 
