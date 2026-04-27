@@ -120,6 +120,13 @@ function NavbarContent() {
                 {item.name}
               </Link>
             ))}
+            <Button
+              asChild
+              size="sm"
+              className="bg-emerald-600 text-white hover:bg-emerald-700"
+            >
+              <Link href="/appointment">{t.nav.bookAppointment}</Link>
+            </Button>
           </div>
 
           <div className="hidden md:block">
@@ -149,6 +156,14 @@ function NavbarContent() {
                     {item.name}
                   </Link>
                 ))}
+                <Button
+                  asChild
+                  className="mt-2 w-full bg-emerald-600 text-white hover:bg-emerald-700"
+                >
+                  <Link href="/appointment" onClick={() => setOpen(false)}>
+                    {t.nav.bookAppointment}
+                  </Link>
+                </Button>
                 {renderLanguageSwitcher(true)}
               </div>
             </SheetContent>

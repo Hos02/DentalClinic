@@ -46,7 +46,7 @@ export function Hero() {
                 size="lg"
                 className="w-full bg-emerald-600 px-6 py-5 text-base text-white hover:bg-emerald-700 sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
               >
-                <Link href="/doctors">{t.hero.viewDoctors}</Link>
+                <Link href="/appointment">{t.nav.bookAppointment}</Link>
               </Button>
             </div>
           </div>

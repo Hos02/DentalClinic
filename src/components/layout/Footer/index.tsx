@@ -20,41 +20,57 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="break-all text-sm text-gray-600 transition-colors hover:text-emerald-600 sm:break-normal"
+                  className="group inline-flex break-all items-center gap-2 text-sm text-gray-600 transition-colors hover:text-emerald-600 sm:break-normal"
                 >
+                  <svg className="h-4 w-4 text-emerald-600/80 transition-colors group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 22a10 10 0 100-20 10 10 0 000 20z" />
+                  </svg>
                   {t.footer.aboutUs}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/team"
-                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
+                  className="group inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
+                  <svg className="h-4 w-4 text-emerald-600/80 transition-colors group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-5.356-3.77M17 20H7m10 0v-2c0-.653-.084-1.287-.24-1.891M7 20H2v-2a4 4 0 015.356-3.77M7 20v-2c0-.653.084-1.287.24-1.891m0 0a5.002 5.002 0 019.52 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
                   {t.footer.ourTeam}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/careers"
-                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
-                >
-                  {t.footer.careers}
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/blog"
-                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
+                  className="group inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
+                  <svg className="h-4 w-4 text-emerald-600/80 transition-colors group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21H8a2 2 0 01-2-2V5a2 2 0 012-2h6l5 5v11a2 2 0 01-2 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 3v5h5M9 13h6M9 17h6" />
+                  </svg>
                   {t.footer.blog}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/terms"
-                  className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
+                  className="group inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
+                  <svg className="h-4 w-4 text-emerald-600/80 transition-colors group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                  </svg>
                   {t.footer.terms}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="group inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-emerald-600"
+                >
+                  <svg className="h-4 w-4 text-emerald-600/80 transition-colors group-hover:text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3l7 4v5c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V7l7-4z" />
+                  </svg>
+                  {t.footer.privacyPolicy}
                 </Link>
               </li>
             </ul>
@@ -62,7 +78,20 @@ export default function Footer() {
 
           {/* Contact Us Section */}
           <div className="space-y-4">
-            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-emerald-700">
+              <svg
+                className="h-5 w-5 text-emerald-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
               {t.footer.contactUs}
             </h3>
             <ul className="space-y-3">
@@ -81,10 +110,10 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="tel:+37477454979"
+                  href="tel:+37493555179"
                   className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
-                  +374 77 454 979
+                  +374 93 555 179
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -108,7 +137,7 @@ export default function Footer() {
                   />
                 </svg>
                 <span className="text-gray-600 text-sm">
-                  15 Abovyan Street, Yerevan, Armenia
+                  {t.footer.address}
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -126,10 +155,10 @@ export default function Footer() {
                   />
                 </svg>
                 <a
-                  href="mailto:info@dentalcare.com"
+                  href="mailto:info@melqonyanner.am"
                   className="text-sm text-gray-600 transition-colors hover:text-emerald-600"
                 >
-                  info@dentalcare.com
+                  info@melqonyanner.am
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -155,7 +184,20 @@ export default function Footer() {
 
           {/* Follow Us Section */}
           <div className="space-y-4">
-            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-emerald-700">
+              <svg
+                className="h-5 w-5 text-emerald-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2v-9a2 2 0 012-2h2m10 0V6a4 4 0 10-8 0v2m8 0H7"
+                />
+              </svg>
               {t.footer.followUs}
             </h3>
             <div className="space-y-4">
@@ -262,7 +304,20 @@ export default function Footer() {
 
           {/* Why Choose Us Section */}
           <div className="space-y-4">
-            <h3 className="mb-4 text-lg font-semibold text-emerald-700">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-emerald-700">
+              <svg
+                className="h-5 w-5 text-emerald-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 3c-2.755 0-5.29.931-7.312 2.484A11.964 11.964 0 003 12c0 2.755.931 5.29 2.484 7.312A11.964 11.964 0 0012 21c2.755 0 5.29-.931 7.312-2.484A11.964 11.964 0 0021 12c0-2.755-.931-5.29-2.484-7.312z"
+                />
+              </svg>
               {t.footer.whyChooseUs}
             </h3>
             <ul className="space-y-3">

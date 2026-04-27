@@ -169,7 +169,7 @@ export default function AppointmentPage() {
 					</div>
 				</div>
 
-				<div>
+				<div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
 					<Button type="submit" className="w-full sm:w-auto">{t.appointment.requestAppointment}</Button>
 				</div>
 					</form>
