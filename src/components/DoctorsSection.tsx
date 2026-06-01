@@ -2,551 +2,165 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Star, X, Calendar } from "lucide-react";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { doctors as doctorsList } from "@/data/doctors";
 import { useTranslation } from "@/i18n/LanguageProvider";
 
-interface TimeSlot {
-  time: string;
-  available: boolean;
+const doctorRatings: Record<string, { rating: number; reviews: number }> = {
+  "sarah-johnson": { rating: 4.9, reviews: 127 },
+  "michael-chen": { rating: 4.8, reviews: 89 },
+  "emily-rodriguez": { rating: 4.7, reviews: 156 },
+  "laura-patel": { rating: 4.9, reviews: 94 },
+};
+
+function useVisibleCount() {
+  const [count, setCount] = React.useState(1);
+
+  React.useEffect(() => {
+    const update = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) setCount(3);
+      else if (window.matchMedia("(min-width: 768px)").matches) setCount(2);
+      else setCount(1);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return count;
 }
 
-interface DoctorSchedule {
-  day: string;
-  date: string;
-  slots: TimeSlot[];
-}
-
-interface Doctor {
-  id: number;
-  name: string;
-  specialty: string;
-  rating: number;
-  reviews: number;
-  image: string;
-  schedule: DoctorSchedule[];
-}
-
-const doctors: Doctor[] = [
-  {
-    id: 1,
-    name: "Dr. Sarah Johnson",
-    specialty: "General Dentistry",
-    rating: 4.9,
-    reviews: 127,
-    image: "/images/doctor1.jpg",
-    schedule: [
-      {
-        day: "Monday",
-        date: "2024-01-15",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: false },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Tuesday",
-        date: "2024-01-16",
-        slots: [
-          { time: "09:00", available: false },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: false },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Wednesday",
-        date: "2024-01-17",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: false },
-        ],
-      },
-      {
-        day: "Thursday",
-        date: "2024-01-18",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: false },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Friday",
-        date: "2024-01-19",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: false },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Dr. Michael Chen",
-    specialty: "Orthodontics",
-    rating: 4.8,
-    reviews: 89,
-    image: "/images/doctor2.jpg",
-    schedule: [
-      {
-        day: "Monday",
-        date: "2024-01-15",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: false },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Tuesday",
-        date: "2024-01-16",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: false },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Wednesday",
-        date: "2024-01-17",
-        slots: [
-          { time: "09:00", available: false },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Thursday",
-        date: "2024-01-18",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: false },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Friday",
-        date: "2024-01-19",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: false },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Dr. Emily Rodriguez",
-    specialty: "Oral Surgery",
-    rating: 4.7,
-    reviews: 156,
-    image: "/images/doctor3.jpg",
-    schedule: [
-      {
-        day: "Monday",
-        date: "2024-01-15",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: false },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Tuesday",
-        date: "2024-01-16",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: false },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Wednesday",
-        date: "2024-01-17",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: false },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-      {
-        day: "Thursday",
-        date: "2024-01-18",
-        slots: [
-          { time: "09:00", available: true },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: false },
-        ],
-      },
-      {
-        day: "Friday",
-        date: "2024-01-19",
-        slots: [
-          { time: "09:00", available: false },
-          { time: "10:00", available: true },
-          { time: "11:00", available: true },
-          { time: "14:00", available: true },
-          { time: "15:00", available: true },
-          { time: "16:00", available: true },
-        ],
-      },
-    ],
-  },
-];
-
-// Doctor Card Component
 interface DoctorCardProps {
-  doctor: Doctor;
-  isSelected: boolean;
-  onClick: () => void;
+  doctor: (typeof doctorsList)[number];
 }
 
-function DoctorCard({ doctor, isSelected, onClick }: DoctorCardProps) {
+function DoctorCard({ doctor }: DoctorCardProps) {
   const { t } = useTranslation();
+  const meta = doctorRatings[doctor.id] ?? { rating: 5, reviews: 0 };
+  const fullName = `Dr. ${doctor.firstName} ${doctor.lastName}`;
 
   return (
-    <div
-      className={cn(
-        "bg-white rounded-xl shadow-lg border-2 transition-all duration-300 cursor-pointer overflow-hidden",
-        isSelected
-          ? "border-emerald-600 shadow-xl scale-[1.02]"
-          : "border-gray-200 hover:border-emerald-300 hover:shadow-xl"
-      )}
-      onClick={onClick}
-    >
-      <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] overflow-hidden bg-gray-100">
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-gray-100">
         <Image
           src={doctor.image}
-          alt={doctor.name}
+          alt={fullName}
           fill
-          className="object-contain transition-transform duration-300 hover:scale-105"
-          priority={doctor.id <= 3}
+          className="object-contain object-center p-1"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
-      <div className="p-5 sm:p-6">
-        <h3 className="mb-2 text-lg font-bold text-gray-900 sm:text-xl">{doctor.name}</h3>
-        <p className="mb-4 font-medium text-emerald-700">{doctor.specialty}</p>
-        <div className="flex items-center gap-2">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h3 className="text-lg font-bold text-gray-900 sm:text-xl">{fullName}</h3>
+        <p className="mt-1 font-medium text-emerald-700">{doctor.specialization}</p>
+        <div className="mt-4 flex items-center gap-2">
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
                 className={cn(
-                  "w-5 h-5",
-                  i < Math.floor(doctor.rating)
+                  "h-5 w-5",
+                  i < Math.floor(meta.rating)
                     ? "fill-yellow-400 text-yellow-400"
                     : "fill-gray-200 text-gray-200"
                 )}
               />
             ))}
           </div>
-          <span className="text-sm font-semibold text-gray-700">
-            {doctor.rating}
-          </span>
+          <span className="text-sm font-semibold text-gray-700">{meta.rating}</span>
           <span className="text-sm text-gray-500">
-            ({doctor.reviews} {t.doctors.reviews})
+            ({meta.reviews} {t.doctors.reviews})
           </span>
         </div>
-      </div>
-    </div>
+        </div>
+    </article>
   );
 }
 
-// Doctor Details Panel Component
-interface DoctorDetailsPanelProps {
-  doctor: Doctor | null;
-  selectedSlot: {
-    doctorId: number;
-    day: string;
-    date: string;
-    time: string;
-  } | null;
-  onClose: () => void;
-  onSlotSelect: (doctorId: number, day: string, date: string, time: string) => void;
-  onBookAppointment: () => void;
-}
-
-function DoctorDetailsPanel({
-  doctor,
-  selectedSlot,
-  onClose,
-  onSlotSelect,
-  onBookAppointment,
-}: DoctorDetailsPanelProps) {
-  const { t } = useTranslation();
-
-  if (!doctor) return null;
-
-  return (
-    <div className="w-full border-t-4 border-emerald-600 bg-gradient-to-br from-emerald-50 to-white shadow-2xl">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0">
-              <Image
-                src={doctor.image}
-                alt={doctor.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 64px, 80px"
-              />
-            </div>
-            <div className="min-w-0">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">{doctor.name}</h3>
-              <p className="text-sm font-medium text-emerald-700 sm:text-base">{doctor.specialty}</p>
-              <div className="flex items-center gap-2 mt-1 flex-wrap">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={cn(
-                        "w-3 h-3 sm:w-4 sm:h-4",
-                        i < Math.floor(doctor.rating)
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "fill-gray-200 text-gray-200"
-                      )}
-                    />
-                  ))}
-                </div>
-                <span className="text-xs sm:text-sm font-semibold text-gray-700">
-                  {doctor.rating}
-                </span>
-                <span className="text-xs sm:text-sm text-gray-500">
-                  ({doctor.reviews} reviews)
-                </span>
-              </div>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-200 transition-colors flex-shrink-0 self-end sm:self-auto"
-            aria-label={t.doctors.close}
-          >
-            <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
-          </button>
-        </div>
-
-        {/* Schedule */}
-        <div className="mb-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Calendar className="h-5 w-5 text-emerald-600" />
-            <h4 className="text-lg font-semibold text-gray-900">
-              {t.doctors.availableSchedule}
-            </h4>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            {doctor.schedule.map((daySchedule, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm"
-              >
-                <div className="mb-3">
-                  <p className="font-semibold text-gray-900">{daySchedule.day}</p>
-                  <p className="text-sm text-gray-500">{daySchedule.date}</p>
-                </div>
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-2">
-                  {daySchedule.slots.map((slot, slotIdx) => (
-                    <button
-                      key={slotIdx}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (slot.available) {
-                          onSlotSelect(
-                            doctor.id,
-                            daySchedule.day,
-                            daySchedule.date,
-                            slot.time
-                          );
-                        }
-                      }}
-                      disabled={!slot.available}
-                      className={cn(
-                        "px-2 py-1.5 text-xs font-medium rounded-md transition-colors",
-                        slot.available
-                          ? selectedSlot?.doctorId === doctor.id &&
-                              selectedSlot?.day === daySchedule.day &&
-                              selectedSlot?.time === slot.time
-                            ? "bg-emerald-600 text-white"
-                            : "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
-                          : "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200"
-                      )}
-                    >
-                      {slot.time}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Booking Section */}
-        {selectedSlot?.doctorId === doctor.id && (
-          <div className="rounded-lg border-2 border-emerald-200 bg-white p-6 shadow-lg">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div>
-                <p className="text-sm text-gray-700 mb-1">{t.doctors.selectedAppointment}</p>
-                <p className="font-semibold text-gray-900 text-lg">
-                  {selectedSlot.day}, {selectedSlot.date} at {selectedSlot.time}
-                </p>
-              </div>
-              <Button onClick={onBookAppointment} size="lg" className="w-full md:w-auto">
-                {t.nav.bookAppointment}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// Main Doctors Section Component
 export function DoctorsSection() {
   const { t } = useTranslation();
+  const visibleCount = useVisibleCount();
+  const [index, setIndex] = React.useState(0);
 
-  const [selectedDoctor, setSelectedDoctor] = React.useState<Doctor | null>(null);
-  const [selectedSlot, setSelectedSlot] = React.useState<{
-    doctorId: number;
-    day: string;
-    date: string;
-    time: string;
-  } | null>(null);
+  const maxIndex = Math.max(0, doctorsList.length - visibleCount);
 
-  const handleDoctorClick = (doctor: Doctor) => {
-    if (selectedDoctor?.id === doctor.id) {
-      setSelectedDoctor(null);
-      setSelectedSlot(null);
-    } else {
-      setSelectedDoctor(doctor);
-      setSelectedSlot(null);
-    }
-  };
+  React.useEffect(() => {
+    setIndex((current) => Math.min(current, maxIndex));
+  }, [maxIndex]);
 
-  const handleSlotSelect = (
-    doctorId: number,
-    day: string,
-    date: string,
-    time: string
-  ) => {
-    setSelectedSlot({ doctorId, day, date, time });
-  };
+  const goPrev = () => setIndex((current) => Math.max(current - 1, 0));
+  const goNext = () => setIndex((current) => Math.min(current + 1, maxIndex));
 
-  const handleBookAppointment = () => {
-    if (selectedSlot && selectedDoctor) {
-      alert(
-        t.doctors.bookSuccess
-          .replace("{doctor}", selectedDoctor.name)
-          .replace("{day}", selectedSlot.day)
-          .replace("{date}", selectedSlot.date)
-          .replace("{time}", selectedSlot.time)
-      );
-      setSelectedSlot(null);
-      setSelectedDoctor(null);
-    }
-  };
-
-  const handleClosePanel = () => {
-    setSelectedDoctor(null);
-    setSelectedSlot(null);
-  };
+  const trackWidthPercent = (doctorsList.length / visibleCount) * 100;
+  const cardWidthPercent = 100 / doctorsList.length;
+  const translatePercent = (index * 100) / doctorsList.length;
 
   return (
-    <section className="py-16 lg:py-24 bg-white">
+    <section className="bg-white py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        <div className="mb-12 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
             {t.doctors.sectionTitle}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-gray-600">
             {t.doctors.sectionSubtitle}
           </p>
         </div>
 
-        {/* Doctors Grid - Fixed Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
-          {doctors.map((doctor) => (
-            <DoctorCard
-              key={doctor.id}
-              doctor={doctor}
-              isSelected={selectedDoctor?.id === doctor.id}
-              onClick={() => handleDoctorClick(doctor)}
-            />
-          ))}
+        <div className="relative mx-auto max-w-6xl">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={goPrev}
+            disabled={index === 0}
+            className="absolute -left-2 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-gray-200 bg-white shadow-md sm:-left-5 lg:h-12 lg:w-12"
+            aria-label={t.doctors.previousDoctor}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+
+          <div className="overflow-hidden px-8 sm:px-10">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-out"
+              style={{
+                width: `${trackWidthPercent}%`,
+                transform: `translateX(-${translatePercent}%)`,
+              }}
+            >
+              {doctorsList.map((doctor) => (
+                <div
+                  key={doctor.id}
+                  className="shrink-0"
+                  style={{ width: `${cardWidthPercent}%` }}
+                >
+                  <DoctorCard doctor={doctor} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={goNext}
+            disabled={index >= maxIndex}
+            className="absolute -right-2 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-gray-200 bg-white shadow-md sm:-right-5 lg:h-12 lg:w-12"
+            aria-label={t.doctors.nextDoctor}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
         </div>
 
-        {/* Horizontal Expansion Panel */}
-        <div
-          className={cn(
-            "overflow-hidden transition-all duration-500 ease-in-out",
-            selectedDoctor
-              ? "max-h-[1000px] opacity-100"
-              : "max-h-0 opacity-0"
-          )}
-        >
-          <div
-            className={cn(
-              "transform transition-transform duration-500 ease-in-out",
-              selectedDoctor ? "translate-y-0" : "-translate-y-full"
-            )}
-          >
-            <DoctorDetailsPanel
-              doctor={selectedDoctor}
-              selectedSlot={selectedSlot}
-              onClose={handleClosePanel}
-              onSlotSelect={handleSlotSelect}
-              onBookAppointment={handleBookAppointment}
-            />
-          </div>
+        <div className="mt-10 flex justify-center">
+          <Button asChild size="lg">
+            <Link href="/appointment">{t.nav.bookAppointment}</Link>
+          </Button>
         </div>
       </div>
     </section>
