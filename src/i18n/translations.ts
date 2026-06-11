@@ -28,6 +28,28 @@ export const translations = {
       selectedAppointment: "Selected appointment:",
       bookSuccess:
         "Appointment booked with {doctor} on {day}, {date} at {time}",
+      team: [
+        {
+          name: "Hrant Melkonyan",
+          specialty: "Oral and Maxillofacial Surgeon",
+        },
+        {
+          name: "Heline Tonoyan",
+          specialty: "Family Dentist",
+        },
+        {
+          name: "Karen Musheghyan",
+          specialty: "Family Dentist",
+        },
+        {
+          name: "Milena Melkumyan",
+          specialty: "Family Dentist",
+        },
+        {
+          name: "Anna Grigoryan",
+          specialty: "Family Dentist",
+        },
+      ],
     },
     pricing: {
       title: "Services",
@@ -140,6 +162,28 @@ export const translations = {
       selectedAppointment: "Выбранная запись:",
       bookSuccess:
         "Запись оформлена к {doctor} на {day}, {date} в {time}",
+      team: [
+        {
+          name: "Грант Мелконян",
+          specialty: "Челюстно-лицевой хирург",
+        },
+        {
+          name: "Элине Тоноян",
+          specialty: "Семейный стоматолог",
+        },
+        {
+          name: "Карен Мушегян",
+          specialty: "Семейный стоматолог",
+        },
+        {
+          name: "Милена Мелкумян",
+          specialty: "Семейный стоматолог",
+        },
+        {
+          name: "Анна Григорян",
+          specialty: "Семейный стоматолог",
+        },
+      ],
     },
     pricing: {
       title: "Услуги",
@@ -252,6 +296,28 @@ export const translations = {
       selectedAppointment: "Ընտրված ժամադրություն՝",
       bookSuccess:
         "Գրանցումը հաստատվեց {doctor}-ի մոտ՝ {day}, {date}, {time}",
+      team: [
+        {
+          name: "Մելքոնյան Հրանտ",
+          specialty: "Դիմածնոտային վիրաբույժ",
+        },
+        {
+          name: "Տոնոյան Հեղինե",
+          specialty: "Ընտանեկան ստոմատոլոգ",
+        },
+        {
+          name: "Մուշեղյան Կարեն",
+          specialty: "Ընտանեկան ստոմատոլոգ",
+        },
+        {
+          name: "Մելքումյան Միլենա",
+          specialty: "Ընտանեկան ստոմատոլոգ",
+        },
+        {
+          name: "Գրիգորյան Աննա",
+          specialty: "Ընտանեկան ստոմատոլոգ",
+        },
+      ],
     },
     pricing: {
       title: "Ծառայություններ",

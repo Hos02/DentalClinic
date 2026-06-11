@@ -51,18 +51,24 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Side - Dentist Photo */}
+          {/* Right Side - Video */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative aspect-square w-full max-w-xs sm:max-w-md lg:max-w-lg">
+            <div className="relative aspect-square w-full sm:max-w-md lg:max-w-lg">
               <div className="relative h-full w-full overflow-hidden rounded-xl shadow-2xl">
-                <Image
-                  src="/images/dentinst1.jpg"
-                  alt={t.nav.doctors}
-                  fill
-                  className="object-cover"
-                  priority
-                  quality={90}
-                />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  preload="auto"
+                  className="h-full w-full object-cover"
+                >
+                  <source
+                    src="https://res.cloudinary.com/divsygzc2/video/upload/q_auto/f_auto/v1780342430/IMG_3651_dkeayj.mov"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
               {/* Decorative element */}
               <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-emerald-500 opacity-20 blur-2xl -z-10" />
