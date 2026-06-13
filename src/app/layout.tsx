@@ -33,8 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={playfair.className}>
-      <body className="min-h-screen bg-white text-gray-900 antialiased">
+    <html lang="en" className={playfair.className} suppressHydrationWarning>
+      <body
+        className="min-h-screen bg-white text-gray-900 antialiased"
+        suppressHydrationWarning
+      >
         <LanguageProvider>
           <div className="flex min-h-screen flex-col">
             <Navbar />

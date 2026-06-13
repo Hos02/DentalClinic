@@ -22,6 +22,11 @@ export const translations = {
       sectionTitle: "Our Expert Doctors",
       sectionSubtitle:
         "Meet our experienced dental professionals dedicated to your oral health",
+      bookWith: "Book with {name}",
+      leadSpecialist: "Lead Specialist",
+      ctaTitle: "Ready to schedule your visit?",
+      ctaSubtitle:
+        "Choose your preferred doctor and book an appointment online in just a few steps.",
       reviews: "reviews",
       close: "Close",
       availableSchedule: "Available Schedule",
@@ -32,22 +37,27 @@ export const translations = {
         {
           name: "Hrant Melkonyan",
           specialty: "Oral and Maxillofacial Surgeon",
+          bio: "Specializes in oral and maxillofacial surgery, bringing precision and care to complex dental procedures and surgical treatments.",
         },
         {
           name: "Heline Tonoyan",
           specialty: "Family Dentist",
+          bio: "Provides gentle, comprehensive dental care for patients of all ages, with a focus on prevention and lasting oral health.",
         },
         {
           name: "Karen Musheghyan",
           specialty: "Family Dentist",
+          bio: "Delivers thoughtful family dentistry with a patient-first approach, ensuring comfortable visits and confident smiles.",
         },
         {
           name: "Milena Melkumyan",
           specialty: "Family Dentist",
+          bio: "Offers attentive family dental care, combining modern techniques with a warm, welcoming chairside manner.",
         },
         {
           name: "Anna Grigoryan",
           specialty: "Family Dentist",
+          bio: "Dedicated to high-quality family dentistry, helping patients maintain healthy smiles through personalized treatment plans.",
         },
       ],
     },
@@ -170,6 +180,11 @@ export const translations = {
       sectionTitle: "Наши специалисты",
       sectionSubtitle:
         "Познакомьтесь с опытными стоматологами, заботящимися о вашем здоровье",
+      bookWith: "Записаться к {name}",
+      leadSpecialist: "Ведущий специалист",
+      ctaTitle: "Готовы записаться на прием?",
+      ctaSubtitle:
+        "Выберите врача и оформите онлайн-запись всего за несколько шагов.",
       reviews: "отзывов",
       close: "Закрыть",
       availableSchedule: "Доступное расписание",
@@ -180,22 +195,27 @@ export const translations = {
         {
           name: "Грант Мелконян",
           specialty: "Челюстно-лицевой хирург",
+          bio: "Специализируется на челюстно-лицевой хирургии, обеспечивая точность и заботу при сложных стоматологических и хирургических процедурах.",
         },
         {
           name: "Элине Тоноян",
           specialty: "Семейный стоматолог",
+          bio: "Оказывает бережную комплексную стоматологическую помощь пациентам всех возрастов с акцентом на профилактику и долгосрочное здоровье.",
         },
         {
           name: "Карен Мушегян",
           specialty: "Семейный стоматолог",
+          bio: "Практикует семейную стоматологию с вниманием к каждому пациенту, обеспечивая комфортные визиты и уверенные улыбки.",
         },
         {
           name: "Милена Мелкумян",
           specialty: "Семейный стоматолог",
+          bio: "Предлагает внимательную семейную стоматологическую помощь, сочетая современные методы с теплым и дружелюбным подходом.",
         },
         {
           name: "Анна Григорян",
           specialty: "Семейный стоматолог",
+          bio: "Занимается качественной семейной стоматологией, помогая пациентам сохранять здоровые улыбки с помощью индивидуальных планов лечения.",
         },
       ],
     },
@@ -318,6 +338,11 @@ export const translations = {
       sectionTitle: "Մեր փորձառու բժիշկները",
       sectionSubtitle:
         "Ծանոթացեք մեր փորձառու ատամնաբույժներին, ովքեր հոգում են ձեր բերանի առողջության մասին",
+      bookWith: "Գրանցվել {name}-ի մոտ",
+      leadSpecialist: "Գլխավոր մասնագետ",
+      ctaTitle: "Պատրա՞ստ եք գրանցվել այցելության",
+      ctaSubtitle:
+        "Ընտրեք ձեր նախընտրած բժշկին և գրանցվեք օնլայն ընդամենը մի քանի քայլով։",
       reviews: "ակնարկ",
       close: "Փակել",
       availableSchedule: "Հասանելի գրաֆիկ",
@@ -328,22 +353,27 @@ export const translations = {
         {
           name: "Մելքոնյան Հրանտ",
           specialty: "Դիմածնոտային վիրաբույժ",
+          bio: "Մասնագիտացած է դեմքի-ծնոտային վիրաբուժության մեջ՝ ապահովելով ճշգրտություն և խնամք բարդ ատամնաբուժական և վիրաբուժական գործողությունների ժամանակ։",
         },
         {
           name: "Տոնոյան Հեղինե",
           specialty: "Ընտանեկան ստոմատոլոգ",
+          bio: "Տրամադրում է նուրբ և համապարփակ ատամնաբուժական խնամք բոլոր տարիքի հիվանդների համար՝ կենտրոնանալով կանխարգելման և երկարաժամկետ առողջության վրա։",
         },
         {
           name: "Մուշեղյան Կարեն",
           specialty: "Ընտանեկան ստոմատոլոգ",
+          bio: "Կիրառում է ընտանեկան ատամնաբուժություն հիվանդի կենտրոնում մոտեցմամբ՝ ապահովելով հարմար այցելություններ և վստահ ժպիտներ։",
         },
         {
           name: "Մելքումյան Միլենա",
           specialty: "Ընտանեկան ստոմատոլոգ",
+          bio: "Առաջարկում է ուշադիր ընտանեկան ատամնաբուժական խնամք՝ համատեղելով ժամանակակից մեթոդները և ջերմ, բարեկամական մոտեցումը։",
         },
         {
           name: "Գրիգորյան Աննա",
           specialty: "Ընտանեկան ստոմատոլոգ",
+          bio: "Նվիրված է բարձրորակ ընտանեկան ատամնաբուժությանը՝ օգնելով հիվանդներին պահպանել առողջ ժպիտներ անհատականացված բուժման պլանների միջոցով։",
         },
       ],
     },
